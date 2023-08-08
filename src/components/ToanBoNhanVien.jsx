@@ -208,7 +208,7 @@ export default function ToanBoNhanVien() {
                 </Card>
 
                 <Table dataSource={dataSource} columns={columns}
-                    pagination={false} scroll={{ x: '120vw', y: '80vh' }}
+                    pagination={true} scroll={{ x: '120vw'}}
                     tableLayout="column.elipsis" />
             </div>
         </>

@@ -180,7 +180,7 @@ export default function PhongBan() {
                     <Button style={{ marginTop: '2%', float: 'right' }} type='primary'><PlusOutlined />Thêm phòng ban</Button>
                 </Card>
                 <Table dataSource={dataSource} columns={columns}
-                    pagination={false}
+                    pagination={true} scroll={{x:"80vw"}}
                     tableLayout="column.elipsis">
                 </Table>
             </div>
