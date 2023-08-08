@@ -1,6 +1,6 @@
 import { ArrowUpOutlined, EllipsisOutlined, LogoutOutlined, MailOutlined, MoreOutlined, NumberOutlined, PhoneOutlined, PlusOutlined, UserOutlined } from "@ant-design/icons";
 import { Avatar, Badge, Button, Card, Table } from "antd";
-import phongBan from "../shared/ListPhongBan";
+import phongBan from "../data/ListPhongBan";
 
 export default function PhongBan() {
 

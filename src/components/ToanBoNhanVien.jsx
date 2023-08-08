@@ -1,5 +1,6 @@
 import { BankOutlined, CalendarOutlined, CreditCardOutlined, DownOutlined, EllipsisOutlined, GlobalOutlined, HomeOutlined, LogoutOutlined, MailOutlined, PhoneOutlined, PlusOutlined, UnorderedListOutlined, UserOutlined } from "@ant-design/icons";
 import { Avatar, Badge, Button, Card, Col, Dropdown, Input, Row, Space, Table, message } from "antd";
+import {nhanVien} from '../data/ListNhanVien';
 
 export default function ToanBoNhanVien() {
     function getRandomBgColor() {
@@ -15,13 +16,14 @@ export default function ToanBoNhanVien() {
         return status;
     }
     function getFirstLetter(string) {
-        const firstLet = string.charAt(0);
+        const convertedJSON = JSON.stringify(string);
+        const firstLet = convertedJSON.charAt(1);
         return firstLet;
     }
-    function setGender(gt){
-        if(gt == 'Nam'){
-            return (<Button disabled style={{ backgroundColor: 'lightblue', color:'blue' }}>Nam</Button>)
-        } else if(gt == 'Nữ')  return <Button disabled style={{ backgroundColor: 'pink', color:'red' }}>Nữ</Button>
+    function setGender(gt) {
+        if (gt == 'Nam') {
+            return (<Button disabled style={{ backgroundColor: 'lightblue', color: 'blue' }}>Nam</Button>)
+        } else if (gt == 'Nữ') return <Button disabled style={{ backgroundColor: 'pink', color: 'red' }}>Nữ</Button>
     }
     const handleMenuClick = (e) => {
         message.info('Click on menu item.');
@@ -58,13 +60,13 @@ export default function ToanBoNhanVien() {
             dataIndex: 'tnv',
             key: 'tnv',
             render: (tnv) => (
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    {/* <Avatar
-                    style={{
-                        backgroundColor: 'purple',
-                    }}
-                >{getFirstLetter({tnv})}</Avatar>{tnv} */}
-                {tnv}
+                <div>
+                    <Avatar
+                        style={{
+                            backgroundColor: 'purple',
+                        }}
+                    >{getFirstLetter(tnv)}</Avatar><span className="td-content">{tnv}</span>
+                    {/* {tnv} */}
                 </div>
             ),
         },
@@ -76,7 +78,7 @@ export default function ToanBoNhanVien() {
         },
         {
             title: <><PhoneOutlined />
-            <span className="th-content">Số điện thoại</span></>,
+                <span className="th-content">Số điện thoại</span></>,
             dataIndex: 'sdt',
             key: 'sdt',
         },
@@ -121,11 +123,7 @@ export default function ToanBoNhanVien() {
     const dataSource = [
         {
             id: 4,
-            tnv: <div><Avatar
-                style={{
-                    backgroundColor: 'rgb(140, 9, 248)',
-                }}
-            >s</Avatar><span className="td-content">string string</span></div>,
+            tnv: 'string string',
             pb: 'Sales',
             sdt: 'string',
             gt: 'Nam',
@@ -138,11 +136,7 @@ export default function ToanBoNhanVien() {
         },
         {
             id: 3,
-            tnv: <div><Avatar
-                style={{
-                    backgroundColor: 'rgb(140, 9, 248)',
-                }}
-            >{getFirstLetter('Nguyen Van Nhan Vien').toUpperCase()}</Avatar><span className="td-content">Nguyen Van Nhan Vien</span></div>,
+            tnv: 'Nguyen Van Nhan Vien',
             pb: 'Chăm sóc khách hàng',
             sdt: 'string',
             gt: 'Nam',
@@ -155,11 +149,7 @@ export default function ToanBoNhanVien() {
         },
         {
             id: 2,
-            tnv: <div><Avatar
-                style={{
-                    backgroundColor: 'rgb(140, 9, 248)',
-                }}
-            >N</Avatar><span className="td-content">Nguyen Van Quan Ly</span></div>,
+            tnv: 'Nguyen Van Quan Ly',
             pb: 'Sales',
             sdt: 'string',
             gt: 'Nam',
@@ -172,11 +162,7 @@ export default function ToanBoNhanVien() {
         },
         {
             id: 1,
-            tnv: <div><Avatar
-                style={{
-                    backgroundColor: 'rgb(140, 9, 248)',
-                }}
-            >V</Avatar><span className="td-content">Van Nguyen</span></div>,
+            tnv: 'Van Nguyen',
             pb: 'Sales',
             sdt: 'string',
             gt: 'Nữ',
@@ -199,7 +185,7 @@ export default function ToanBoNhanVien() {
                     <Row justify="start">
                         <Col span={8}>
                             {/* <Search style={{ width: 200 }} placeholder="Tìm kiếm" enterButton /> */}
-                            <Input placeholder="Tìm kiếm" style={{width: 200, border: 'none', boxShadow:'0 2px'}} />
+                            <Input placeholder="Tìm kiếm" style={{ width: 200, border: 'none', boxShadow: '0 2px' }} />
                         </Col>
 
                         <Col span={10}>
@@ -223,7 +209,7 @@ export default function ToanBoNhanVien() {
 
                 <Table dataSource={dataSource} columns={columns}
                     pagination={false} scroll={{ x: '120vw', y: '80vh' }}
-                    tableLayout="column.elipsis"/>
+                    tableLayout="column.elipsis" />
             </div>
         </>
     )
