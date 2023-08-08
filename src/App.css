@@ -1,0 +1,14 @@
+.circleIcon{
+    border:solid rgb(131, 131, 131) 2px;
+    border-radius:50%; 
+    padding:2%,
+}
+.th-content, .td-content{
+    margin-left: 5%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+th.ant-table-cell,td.ant-table-cell{
+    text-overflow: fixed;
+    white-space: nowrap;
+}
