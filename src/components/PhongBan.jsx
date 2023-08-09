@@ -10,7 +10,11 @@ export default function PhongBan() {
         const status = statuses[randomIndex];
         return status;
     }
-
+    function getFirstLetter(string) {
+        const convertedJSON = JSON.stringify(string);
+        const firstLet = convertedJSON.charAt(1);
+        return firstLet;
+    }
     const columns = [
         {
             title: '',
@@ -44,6 +48,13 @@ export default function PhongBan() {
             ),
             dataIndex: 'ql',
             key: 'ql',
+            render: (ql) => (ql != '' && <div>
+                <Avatar
+                    style={{
+                        backgroundColor: 'purple',
+                    }}
+                >{getFirstLetter(ql)}</Avatar><span className="th-content">{ql}</span>
+            </div>)
         },
         {
             title: (
@@ -71,104 +82,6 @@ export default function PhongBan() {
         },
     ];
 
-    // const dataSource = phongBan;
-    const dataSource = [
-        {
-            id: 1,
-            tpb: 'Sales',
-            ql: <div>
-                <Avatar
-                    style={{
-                        backgroundColor: 'purple',
-                    }}
-                >N</Avatar>Nguyen Van Quan Ly
-            </div>,
-            snv: 3,
-            eql: 'hrstaff@test.com',
-            sdt: 'string',
-        },
-        {
-            id: 2,
-            tpb: 'Marketing',
-            ql: '',
-            snv: 0,
-            eql: '',
-            sdt: '',
-        },
-        {
-            id: 3,
-            tpb: 'Finance',
-            ql: '',
-            snv: 0,
-            eql: '',
-            sdt: '',
-        },
-        {
-            id: 4,
-            tpb: 'Human Resource',
-            ql: '',
-            snv: 0,
-            eql: '',
-            sdt: '',
-        },
-        {
-            id: 5,
-            tpb: 'Operations',
-            ql: '',
-            snv: 0,
-            eql: '',
-            sdt: '',
-        },
-        {
-            id: 6,
-            tpb: 'Engineering',
-            ql: '',
-            snv: 0,
-            eql: '',
-            sdt: '',
-        },
-        {
-            id: 7,
-            tpb: 'Customer Support',
-            ql: '',
-            snv: 0,
-            eql: '',
-            sdt: '',
-        },
-        {
-            id: 8,
-            tpb: 'Research & Development',
-            ql: '',
-            snv: 0,
-            eql: '',
-            sdt: '',
-        },
-        {
-            id: 9,
-            tpb: 'Quality Assurance',
-            ql: '',
-            snv: 0,
-            eql: '',
-            sdt: '',
-        },
-        {
-            id: 10,
-            tpb: 'Design',
-            ql: '',
-            snv: 0,
-            eql: '',
-            sdt: '',
-        },
-        {
-            id: 11,
-            tpb: 'Chăm sóc khách hàng',
-            ql: '',
-            snv: 0,
-            eql: '',
-            sdt: '',
-        },
-    ];
-
     return (
         <>
             <Card size="small" style={{ paddingLeft: '5%', fontSize: '150%' }}>
@@ -179,8 +92,8 @@ export default function PhongBan() {
                 <Card style={{ marginTop: '2%' }}>
                     <Button style={{ marginTop: '2%', float: 'right' }} type='primary'><PlusOutlined />Thêm phòng ban</Button>
                 </Card>
-                <Table dataSource={dataSource} columns={columns}
-                    pagination={true} scroll={{x:"80vw"}}
+                <Table dataSource={phongBan} columns={columns}
+                    pagination={true} scroll={{ x: "80vw" }}
                     tableLayout="column.elipsis">
                 </Table>
             </div>

@@ -1,6 +1,6 @@
 import { BankOutlined, CalendarOutlined, CreditCardOutlined, DownOutlined, EllipsisOutlined, GlobalOutlined, HomeOutlined, LogoutOutlined, MailOutlined, PhoneOutlined, PlusOutlined, UnorderedListOutlined, UserOutlined } from "@ant-design/icons";
 import { Avatar, Badge, Button, Card, Col, Dropdown, Input, Row, Space, Table, message } from "antd";
-import {nhanVien} from '../data/ListNhanVien';
+import nhanVien from '../data/ListNhanVien';
 
 export default function ToanBoNhanVien() {
     function getRandomBgColor() {
@@ -120,60 +120,6 @@ export default function ToanBoNhanVien() {
         },
     ];
 
-    const dataSource = [
-        {
-            id: 4,
-            tnv: 'string string',
-            pb: 'Sales',
-            sdt: 'string',
-            gt: 'Nam',
-            email: 'test1@gmail.com',
-            nh: 'string',
-            ns: '4 tháng 8 năm 2023',
-            dc: 'string',
-            qg: 'string',
-            tknh: 'string',
-        },
-        {
-            id: 3,
-            tnv: 'Nguyen Van Nhan Vien',
-            pb: 'Chăm sóc khách hàng',
-            sdt: 'string',
-            gt: 'Nam',
-            email: 'staff@test.com',
-            nh: 'string',
-            ns: '6 tháng 7 năm 2005',
-            dc: 'string',
-            qg: 'string',
-            tknh: 'string',
-        },
-        {
-            id: 2,
-            tnv: 'Nguyen Van Quan Ly',
-            pb: 'Sales',
-            sdt: 'string',
-            gt: 'Nam',
-            email: 'hrstaff@test.com',
-            nh: 'string',
-            ns: '6 tháng 7 năm 2003',
-            dc: 'string',
-            qg: 'string',
-            tknh: 'string',
-        },
-        {
-            id: 1,
-            tnv: 'Van Nguyen',
-            pb: 'Sales',
-            sdt: 'string',
-            gt: 'Nữ',
-            email: 'hrmanager@test.com',
-            nh: 'string',
-            ns: '6 tháng 7 năm 2023',
-            dc: 'string',
-            qg: 'string',
-            tknh: 'string',
-        },
-    ];
     return (
         <>
             <Card size="small" style={{ paddingLeft: '5%', fontSize: '150%' }}>
@@ -207,7 +153,7 @@ export default function ToanBoNhanVien() {
 
                 </Card>
 
-                <Table dataSource={dataSource} columns={columns}
+                <Table dataSource={nhanVien} columns={columns}
                     pagination={true} scroll={{ x: '120vw'}}
                     tableLayout="column.elipsis" />
             </div>
