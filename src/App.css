@@ -15,3 +15,9 @@ th.ant-table-cell,td.ant-table-cell{
 td.ant-table-cell{
     color: grey;
 }
+.ant-card{
+ box-shadow: 1px 1px 2px grey;
+}
+.ant-table-content{
+    height: 65vh;
+}

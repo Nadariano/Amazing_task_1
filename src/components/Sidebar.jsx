@@ -1,6 +1,5 @@
-import { ClockCircleOutlined, DollarOutlined, HomeOutlined, MailOutlined, PayCircleOutlined, SolutionOutlined, TeamOutlined, UserAddOutlined } from "@ant-design/icons";
-import { Avatar, Card, Menu } from "antd";
-import Meta from "antd/es/card/Meta";
+import { ClockCircleOutlined, DollarOutlined, HomeOutlined, MailOutlined, SolutionOutlined, TeamOutlined, UserAddOutlined } from "@ant-design/icons";
+import { Menu } from "antd";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 export default function Sidebar() {
@@ -85,14 +84,6 @@ export default function Sidebar() {
 
     return (
         <>
-            <Card
-            >
-                <Meta
-                    avatar={<Avatar shape="square" src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />}
-                    title="Nguyen Van Quan Ly"
-                />
-            </Card>
-
             <Menu height="300" overflow="hidden"
                 theme="light" mode="inline"
                 openKeys={openKeys}

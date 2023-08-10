@@ -26,8 +26,8 @@ export default function ToanBoNhanVien() {
     }
     function setGender(gt) {
         if (gt == 'Nam') {
-            return (<Button disabled style={{ backgroundColor: 'lightblue', color: 'blue', width: '60%', textAlign: 'center' }}>Nam</Button>)
-        } else if (gt == 'Nữ') return <Button disabled style={{ backgroundColor: 'pink', color: 'red', width: '60%', textAlign: 'center' }}>Nữ</Button>
+            return (<Button disabled style={{ backgroundColor: 'lightblue', color: 'blue', width: '100%', textAlign: 'center' }}>Nam</Button>)
+        } else if (gt == 'Nữ') return <Button disabled style={{ backgroundColor: 'pink', color: 'red', width: '100%', textAlign: 'center' }}>Nữ</Button>
     }
     const handleMenuClick = (e) => {
         message.info('Click on menu item.');
@@ -49,9 +49,9 @@ export default function ToanBoNhanVien() {
             title: '',
             dataIndex: 'status',
             key: 'more',
-            render: (status) => (<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <EllipsisOutlined />
-                {setStatus(status)}
+            render: (status) => (<div>
+                <Button style={{ border: 'none', backgroundColor: 'inherit' }}><EllipsisOutlined /></Button>
+                <span className="td-content">{setStatus(status)}</span>
             </div>)
         },
         {
@@ -90,7 +90,7 @@ export default function ToanBoNhanVien() {
             title: <><UserOutlined /><span className="th-content">Giới tính</span></>,
             dataIndex: 'gt',
             key: 'gt',
-            render: (gt) => (<>{setGender(gt)}</>)
+            render: (gt) => (<div>{setGender(gt)}</div>)
         },
         {
             title: <><MailOutlined /><span className="th-content">Email</span></>,
@@ -131,7 +131,7 @@ export default function ToanBoNhanVien() {
                 <Button style={{ float: 'right', border: 'solid 2px blue' }}><LogoutOutlined /></Button>
             </Card>
             <div style={{ marginTop: '3%', marginLeft: '2%' }}>
-                <Card>
+                <Card style={{ marginBottom: '1%' }}>
                     <Row justify="start">
                         <Col span={8}>
                             {/* <Search style={{ width: 200 }} placeholder="Tìm kiếm" enterButton /> */}
@@ -156,10 +156,12 @@ export default function ToanBoNhanVien() {
                     </Row>
 
                 </Card>
-
-                <Table dataSource={nhanVien} columns={columns}
-                    pagination={true} scroll={{ x: '120vw' }}
-                    tableLayout="column.elipsis" />
+                <Card>
+                    <Table dataSource={nhanVien} columns={columns}
+                        pagination={true} scroll={{ x: 'max-content' }}
+                        tableLayout="column.elipsis"
+                        style={{ height: '70vh' }} />
+                </Card>
             </div>
         </>
     )

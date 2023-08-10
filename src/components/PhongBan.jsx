@@ -20,7 +20,7 @@ export default function PhongBan() {
             title: '',
             dataIndex: 'more',
             key: 'more',
-            render: (more) => (<EllipsisOutlined />),
+            render: (more) => (<Button style={{ border: 'none', backgroundColor: 'inherit' }}><EllipsisOutlined /></Button>),
         },
         {
             title: 'ID',
@@ -43,7 +43,7 @@ export default function PhongBan() {
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <UserOutlined className="circleIcon" />
                     <span className="th-content">Quản lý</span><Button style={{ border: 'none', backgroundColor: 'inherit' }}><ArrowUpOutlined /></Button>
-                    <div style={{width:'100%'}}><Button style={{ border: 'none', backgroundColor: 'inherit', float:'right'}}><MoreOutlined /></Button></div>
+                    <div style={{ width: '100%' }}><Button style={{ border: 'none', backgroundColor: 'inherit', float: 'right' }}><MoreOutlined /></Button></div>
                 </div>
             ),
             dataIndex: 'ql',
@@ -84,18 +84,21 @@ export default function PhongBan() {
 
     return (
         <>
-            <Card size="small" style={{ paddingLeft: '5%', fontSize: '150%', fontWeight:'400' }}>
+            <Card size="small" style={{ paddingLeft: '5%', fontSize: '150%', fontWeight: '400' }}>
                 Danh Sách Phòng Ban
-                <Button style={{ float: 'right', border:'solid 2px blue' }}><LogoutOutlined /></Button>
+                <Button style={{ float: 'right', border: 'solid 2px blue' }}><LogoutOutlined /></Button>
             </Card>
-            <div style={{ marginLeft: '2%' }}>
-                <Card style={{ marginTop: '2%' }}>
-                    <Button style={{ marginTop: '2%', float: 'right' }} type='primary'><PlusOutlined />Thêm phòng ban</Button>
+            <div style={{ marginTop: '3%', marginLeft: '2%' }} >
+                <Card style={{ marginBottom: '1%' }}>
+                    <Button style={{ float: 'right' }} type='primary'><PlusOutlined />Thêm phòng ban</Button>
                 </Card>
-                <Table dataSource={phongBan} columns={columns}
-                    pagination={true} scroll={{ x: "80vw" }}
-                    tableLayout="column.elipsis">
-                </Table>
+                <Card>
+                    <Table dataSource={phongBan} columns={columns}
+                        pagination={true} scroll={{ x: "max-content"}}
+                        size='middle'
+                        tableLayout="column.elipsis"
+                        style={{ height: '70vh' }} />
+                </Card>
             </div>
 
         </>
