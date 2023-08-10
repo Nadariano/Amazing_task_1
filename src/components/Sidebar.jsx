@@ -1,6 +1,7 @@
 import { ClockCircleOutlined, DollarOutlined, HomeOutlined, MailOutlined, PayCircleOutlined, SolutionOutlined, TeamOutlined, UserAddOutlined } from "@ant-design/icons";
 import { Avatar, Card, Menu } from "antd";
 import Meta from "antd/es/card/Meta";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 export default function Sidebar() {
     const items = [
@@ -43,6 +44,45 @@ export default function Sidebar() {
             children,
         };
     }
+    const rootSubmenuKeys = ['dashboard', 'nv', 'tc', 'np', 'dk', 'qll', 'hd', 'td']
+    const [openKeys, setOpenKeys] = useState(rootSubmenuKeys);
+    const onOpenChange = (keys) => {
+        const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+        if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+            setOpenKeys(keys);
+        } else {
+            setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+        }
+    };
+    const initialSelectedKey = sessionStorage.getItem("selectedKey") || "dashboard";
+    const [selectedKey, setSelectedKey] = useState(initialSelectedKey);
+    const handleSelect = ({ key }) => {
+        // Set the selected key in state
+        setSelectedKey(key);
+        // Store the selected key in sessionStorage
+        sessionStorage.setItem("selectedKey", key);
+    };
+
+    // Register a listener for the storage event
+    useEffect(() => {
+        const handleStorage = (event) => {
+            // Check if the event key matches the sessionStorage key
+            if (event.key === "selectedKey") {
+                // Get the updated selected key from sessionStorage
+                const updatedSelectedKey = sessionStorage.getItem("selectedKey");
+                // Set the selected key in state
+                setSelectedKey(updatedSelectedKey);
+            }
+        };
+        // Add the listener to the window object
+        window.addEventListener("storage", handleStorage);
+        // Remove the listener when the component unmounts
+        return () => {
+            window.removeEventListener("storage", handleStorage);
+        };
+    }, []);
+
+
     return (
         <>
             <Card
@@ -54,7 +94,13 @@ export default function Sidebar() {
             </Card>
 
             <Menu height="300" overflow="hidden"
-                theme="light" mode="inline" items={items} />
+                theme="light" mode="inline"
+                openKeys={openKeys}
+                onOpenChange={onOpenChange}
+                selectedKeys={[selectedKey]}
+                onSelect={handleSelect}
+                items={items}
+            />
 
         </>
     )

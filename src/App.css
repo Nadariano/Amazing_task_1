@@ -12,3 +12,6 @@ th.ant-table-cell,td.ant-table-cell{
     text-overflow: fixed;
     white-space: nowrap;
 }
+td.ant-table-cell{
+    color: grey;
+}

@@ -4,11 +4,11 @@ import phongBan from "../data/ListPhongBan";
 
 export default function PhongBan() {
 
-    function getRandomStatus() {
-        const statuses = ['success', 'error', 'default', 'processing', 'warning'];
-        const randomIndex = Math.floor(Math.random() * statuses.length);
-        const status = statuses[randomIndex];
-        return status;
+    function getRandomColor() {
+        const colors = ['black', 'brown', 'red', 'orange', 'goldenrod', 'green', 'blue', 'purple', 'pink'];
+        const randomIndex = Math.floor(Math.random() * colors.length);
+        const color = colors[randomIndex];
+        return color;
     }
     function getFirstLetter(string) {
         const convertedJSON = JSON.stringify(string);
@@ -36,14 +36,14 @@ export default function PhongBan() {
             ),
             dataIndex: 'tpb',
             key: 'tpb',
-            render: (tpb) => (<Badge status={getRandomStatus()} text={<u>{tpb}</u>} />)
+            render: (tpb) => (<Badge color={tpb[1]} text={<u>{tpb[0]}</u>} />)
         },
         {
             title: (
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <UserOutlined className="circleIcon" />
-                    <span className="th-content">Quản lý</span><Button style={{ border: 'none' }}><ArrowUpOutlined /></Button>
-                    <MoreOutlined style={{ marginLeft: '55%' }} />
+                    <span className="th-content">Quản lý</span><Button style={{ border: 'none', backgroundColor: 'inherit' }}><ArrowUpOutlined /></Button>
+                    <div style={{width:'100%'}}><Button style={{ border: 'none', backgroundColor: 'inherit', float:'right'}}><MoreOutlined /></Button></div>
                 </div>
             ),
             dataIndex: 'ql',
@@ -51,7 +51,7 @@ export default function PhongBan() {
             render: (ql) => (ql != '' && <div>
                 <Avatar
                     style={{
-                        backgroundColor: 'purple',
+                        backgroundColor: getRandomColor(),
                     }}
                 >{getFirstLetter(ql)}</Avatar><span className="th-content">{ql}</span>
             </div>)
@@ -84,9 +84,9 @@ export default function PhongBan() {
 
     return (
         <>
-            <Card size="small" style={{ paddingLeft: '5%', fontSize: '150%' }}>
+            <Card size="small" style={{ paddingLeft: '5%', fontSize: '150%', fontWeight:'400' }}>
                 Danh Sách Phòng Ban
-                <Button style={{ float: 'right' }}><LogoutOutlined /></Button>
+                <Button style={{ float: 'right', border:'solid 2px blue' }}><LogoutOutlined /></Button>
             </Card>
             <div style={{ marginLeft: '2%' }}>
                 <Card style={{ marginTop: '2%' }}>

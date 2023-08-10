@@ -3,17 +3,21 @@ import { Avatar, Badge, Button, Card, Col, Dropdown, Input, Row, Space, Table, m
 import nhanVien from '../data/ListNhanVien';
 
 export default function ToanBoNhanVien() {
-    function getRandomBgColor() {
-        const colors = ['rgb(39, 128, 245)', 'lightgrey'];
-        const randomIndex = Math.floor(Math.random() * colors.length);
-        const color = colors[randomIndex];
-        return color;
+    function setStatus(status) {
+        if (status === 'active') return (<Avatar style={{ backgroundColor: 'rgb(39, 128, 245)' }} icon={<UserOutlined />} />);
+        if (status === 'inactive') return (<Avatar style={{ backgroundColor: 'lightgrey' }} icon={<UserOutlined />} />);
     }
     function getRandomStatus() {
         const statuses = ['success', 'error', 'default', 'processing', 'warning'];
         const randomIndex = Math.floor(Math.random() * statuses.length);
         const status = statuses[randomIndex];
         return status;
+    }
+    function getRandomColor() {
+        const colors = ['black', 'brown', 'red', 'orange', 'goldenrod', 'green', 'blue', 'purple', 'pink'];
+        const randomIndex = Math.floor(Math.random() * colors.length);
+        const color = colors[randomIndex];
+        return color;
     }
     function getFirstLetter(string) {
         const convertedJSON = JSON.stringify(string);
@@ -22,8 +26,8 @@ export default function ToanBoNhanVien() {
     }
     function setGender(gt) {
         if (gt == 'Nam') {
-            return (<Button disabled style={{ backgroundColor: 'lightblue', color: 'blue' }}>Nam</Button>)
-        } else if (gt == 'Nữ') return <Button disabled style={{ backgroundColor: 'pink', color: 'red' }}>Nữ</Button>
+            return (<Button disabled style={{ backgroundColor: 'lightblue', color: 'blue', width: '60%', textAlign: 'center' }}>Nam</Button>)
+        } else if (gt == 'Nữ') return <Button disabled style={{ backgroundColor: 'pink', color: 'red', width: '60%', textAlign: 'center' }}>Nữ</Button>
     }
     const handleMenuClick = (e) => {
         message.info('Click on menu item.');
@@ -43,11 +47,11 @@ export default function ToanBoNhanVien() {
     const columns = [
         {
             title: '',
-            dataIndex: 'more',
+            dataIndex: 'status',
             key: 'more',
-            render: (more) => (<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            render: (status) => (<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <EllipsisOutlined />
-                <Avatar style={{ backgroundColor: getRandomBgColor() }} icon={<UserOutlined />} />
+                {setStatus(status)}
             </div>)
         },
         {
@@ -63,7 +67,7 @@ export default function ToanBoNhanVien() {
                 <div>
                     <Avatar
                         style={{
-                            backgroundColor: 'purple',
+                            backgroundColor: getRandomColor(),
                         }}
                     >{getFirstLetter(tnv)}</Avatar><span className="td-content">{tnv}</span>
                     {/* {tnv} */}
@@ -122,9 +126,9 @@ export default function ToanBoNhanVien() {
 
     return (
         <>
-            <Card size="small" style={{ paddingLeft: '5%', fontSize: '150%' }}>
+            <Card size="small" style={{ paddingLeft: '5%', fontSize: '150%', fontWeight: '400' }}>
                 Danh Sách Nhân Viên
-                <Button style={{ float: 'right' }}><LogoutOutlined /></Button>
+                <Button style={{ float: 'right', border: 'solid 2px blue' }}><LogoutOutlined /></Button>
             </Card>
             <div style={{ marginTop: '3%', marginLeft: '2%' }}>
                 <Card>
@@ -143,7 +147,7 @@ export default function ToanBoNhanVien() {
                                     </Space>
                                 </Button>
                             </Dropdown>
-                            <Button type="default" style={{ border: 'solid lightgreen', color: 'lightgreen' }}>Làm mới</Button>
+                            <Button type="default" style={{ border: 'solid lightgreen', color: 'lightgreen', marginLeft: '3%' }}>Làm mới</Button>
                         </Col>
 
                         <Col span={6}>
@@ -154,7 +158,7 @@ export default function ToanBoNhanVien() {
                 </Card>
 
                 <Table dataSource={nhanVien} columns={columns}
-                    pagination={true} scroll={{ x: '120vw'}}
+                    pagination={true} scroll={{ x: '120vw' }}
                     tableLayout="column.elipsis" />
             </div>
         </>

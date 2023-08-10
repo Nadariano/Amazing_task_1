@@ -1,5 +1,6 @@
 const nhanVien = [
     {
+        status: 'active',
         id: 4,
         tnv: 'string string',
         pb: 'Sales',
@@ -13,6 +14,7 @@ const nhanVien = [
         tknh: 'string',
     },
     {
+        status: 'inactive',
         id: 3,
         tnv: 'Nguyen Van Nhan Vien',
         pb: 'Chăm sóc khách hàng',
@@ -26,6 +28,7 @@ const nhanVien = [
         tknh: 'string',
     },
     {
+        status: 'active',
         id: 2,
         tnv: 'Nguyen Van Quan Ly',
         pb: 'Sales',
@@ -39,6 +42,7 @@ const nhanVien = [
         tknh: 'string',
     },
     {
+        status: 'inactive',
         id: 1,
         tnv: 'Van Nguyen',
         pb: 'Sales',
