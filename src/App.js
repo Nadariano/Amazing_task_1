@@ -1,15 +1,15 @@
 import { Layout } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 import './App.css';
-import HeaderSidebar from './components/HeaderSidebar';
-import Sidebar from './components/Sidebar';
-import PhongBan from './components/PhongBan';
-import ToanBoNhanVien from './components/ToanBoNhanVien';
 import {
   Routes,
   Route,
 } from "react-router-dom";
 import { Content } from 'antd/es/layout/layout';
+import HeaderSidebar from './components/Headers/HeaderSidebar';
+import Sidebar from './components/Sidebar/Sidebar';
+import PhongBan from './components/Contents/PhongBan';
+import ToanBoNhanVien from './components/Contents/ToanBoNhanVien';
 
 function App() {
 
