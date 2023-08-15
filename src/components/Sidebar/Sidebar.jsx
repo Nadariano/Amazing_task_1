@@ -9,7 +9,7 @@ export default function Sidebar() {
             getItem(<Link to='/pb'>Phòng Ban</Link>, <TeamOutlined />, 'pb'),
             getItem('Phòng Ban Của Tôi', <TeamOutlined />, 'pbct'),
             getItem(<Link to='/tbnv'>Toàn Bộ Nhân Viên</Link>, <TeamOutlined />, 'tbnv'),
-            getItem('Tạo Nhân Viên Mới', <UserAddOutlined />, 'tnvm'),
+            getItem(<Link to='/tnvm'>Tạo Nhân Viên Mới</Link>, <UserAddOutlined />, 'tnvm'),
         ]),
         getItem(<strong>TĂNG CA</strong>, '', 'tc', [
             getItem('Đơn Tăng Ca Nhân Viên', <ClockCircleOutlined />, 'dtcnv'),
@@ -28,8 +28,8 @@ export default function Sidebar() {
             getItem('Lương Của Tôi', <DollarOutlined />, 'lct'),
         ]),
         getItem(<strong>HỢP ĐỒNG</strong>, '', 'hd', [
-            getItem('Hợp Đồng Nhân Viên', <SolutionOutlined />, 'hdnv'),
-            getItem('Hợp Đồng Của Tôi', <SolutionOutlined />, 'hdct'),
+            getItem(<Link to='/hdnv'>Hợp Đồng Nhân Viên</Link>, <SolutionOutlined />, 'hdnv'),
+            getItem(<Link to='/hdct'>Hợp Đồng Của Tôi</Link>, <SolutionOutlined />, 'hdct'),
         ]),
         getItem(<strong>TUYỂN DỤNG</strong>, '', 'td', [
             getItem('Danh sách ứng viên', <TeamOutlined />, 'dsuv'),

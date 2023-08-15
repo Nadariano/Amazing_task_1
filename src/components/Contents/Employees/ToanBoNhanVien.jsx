@@ -1,7 +1,8 @@
-import { BankOutlined, CalendarOutlined, CreditCardOutlined, DownOutlined, EllipsisOutlined, GlobalOutlined, HomeOutlined, LogoutOutlined, MailOutlined, PhoneOutlined, PlusOutlined, UnorderedListOutlined, UserOutlined } from "@ant-design/icons";
+import { BankOutlined, CalendarOutlined, CreditCardOutlined, DownOutlined, EllipsisOutlined, GlobalOutlined, HomeOutlined, MailOutlined, PhoneOutlined, PlusOutlined, UnorderedListOutlined, UserOutlined } from "@ant-design/icons";
 import { Avatar, Badge, Button, Card, Col, Dropdown, Input, Row, Space, Table, message } from "antd";
-import nhanVien from '../../data/ListNhanVien';
-import HeaderContent from "../Headers/HeaderContent";
+import { Content } from "antd/es/layout/layout";
+import nhanVien from '../../../data/ListNhanVien';
+import HeaderContent from "../../Headers/HeaderContent";
 
 export default function ToanBoNhanVien() {
     function setStatus(status) {
@@ -49,7 +50,7 @@ export default function ToanBoNhanVien() {
         {
             title: '',
             dataIndex: 'status',
-            key: 'more',
+            key: 'status',
             render: (status) => (<div>
                 <Button style={{ border: 'none', backgroundColor: 'inherit' }}><EllipsisOutlined /></Button>
                 <span className="td-content">{setStatus(status)}</span>
@@ -128,8 +129,8 @@ export default function ToanBoNhanVien() {
     return (
         <>
             <HeaderContent title='Danh Sách Nhân Viên' />
-            <div style={{ marginTop: '3%', marginLeft: '2%', marginRight: '2%' }}>
-                <Card style={{ marginBottom: '1%' }}>
+            <Content className="content">
+                <Card style={{ marginBottom: '2%' }}>
                     <Row justify="start">
                         <Col span={8}>
                             {/* <Search style={{ width: 200 }} placeholder="Tìm kiếm" enterButton /> */}
@@ -158,7 +159,7 @@ export default function ToanBoNhanVien() {
                     pagination={true} scroll={{ x: 'max-content' }}
                     tableLayout="column.elipsis"
                     style={{ height: '70vh', boxShadow: '1px 1px 2px grey' }} />
-            </div>
+            </Content>
         </>
     )
 }

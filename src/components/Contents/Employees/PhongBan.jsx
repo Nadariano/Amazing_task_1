@@ -1,7 +1,8 @@
-import { ArrowUpOutlined, EllipsisOutlined, LogoutOutlined, MailOutlined, MoreOutlined, NumberOutlined, PhoneOutlined, PlusOutlined, UserOutlined } from "@ant-design/icons";
+import { ArrowUpOutlined, EllipsisOutlined, MailOutlined, MoreOutlined, NumberOutlined, PhoneOutlined, PlusOutlined, UserOutlined } from "@ant-design/icons";
 import { Avatar, Badge, Button, Card, Table } from "antd";
-import phongBan from "../../data/ListPhongBan";
-import HeaderContent from "../Headers/HeaderContent";
+import { Content } from "antd/es/layout/layout";
+import phongBan from "../../../data/ListPhongBan";
+import HeaderContent from "../../Headers/HeaderContent";
 
 export default function PhongBan() {
 
@@ -86,8 +87,8 @@ export default function PhongBan() {
     return (
         <>
             <HeaderContent title='Danh Sách Phòng Ban' />
-            <div style={{ marginTop: '3%', marginLeft: '2%', marginRight: '2%' }} >
-                <Card style={{ marginBottom: '1%' }}>
+            <Content className="content">
+                <Card style={{ marginBottom: '2%' }}>
                     <Button style={{ float: 'right' }} type='primary'><PlusOutlined />Thêm phòng ban</Button>
                 </Card>
                 <Table dataSource={phongBan} columns={columns}
@@ -95,7 +96,7 @@ export default function PhongBan() {
                     size='middle'
                     tableLayout="column.elipsis"
                     style={{ height: '70vh', boxShadow: '1px 1px 2px grey' }} />
-            </div>
+            </Content>
         </>
     )
 }
