@@ -1,3 +1,9 @@
+.App{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    background-image: url('https://wallpaper.dog/large/17145340.jpg');
+}
 .circleIcon{
     border:solid rgb(131, 131, 131) 2px;
     border-radius:50%; 
@@ -25,4 +31,7 @@ td.ant-table-cell{
     margin-top: 3%; 
     margin-left: 2%; 
     margin-right: 2%;
+}
+.tessst{
+    color: rgb(0, 102, 255);
 }

@@ -151,11 +151,11 @@ export default function TaoNhanVienMoi() {
     );
     const steps = [
         {
-            title: 'First',
+            title: 'Tạo tài khoản',
             content: createAccount,
         },
         {
-            title: 'Second',
+            title: 'Thông tin cá nhân',
             content: addInfo,
         },
     ];
@@ -186,7 +186,7 @@ export default function TaoNhanVienMoi() {
                     }}
                 >
                     {current < steps.length - 1 && (
-                        <Button type="primary" style={{ float: 'right' }} onClick={() => next()}>
+                        <Button type="primary" size="large" style={{ float: 'right' }} onClick={() => next()}>
                             Tiếp tục
                         </Button>
                     )}
