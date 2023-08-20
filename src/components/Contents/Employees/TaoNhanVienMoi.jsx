@@ -1,4 +1,4 @@
-import { Button, Col, Dropdown, Menu, Radio, Row, Steps, message, theme } from "antd";
+import { Button, Col, Dropdown, Form, Menu, Radio, Row, Steps, message, theme } from "antd";
 import Input from "antd/es/input/Input";
 import { Content } from "antd/es/layout/layout";
 import { useState } from "react";
@@ -26,35 +26,73 @@ export default function TaoNhanVienMoi() {
         setSelected(name);
     };
 
+    const onFinish = (values) => {
+        console.log('Success:', values);
+        next();
+    };
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
     const createAccount = (
+        // <Form
+        //     onFinish={onFinish}
+        //     onFinishFailed={onFinishFailed}
+        //     autoComplete="off"
+        // >
         <>
-            <Row>
-                <h3>Tên đăng nhập</h3>
-            </Row>
-            <Row>
+            <h3>Tên đăng nhập</h3>
+            <Form.Item
+                name="newUsername"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Vui lòng không bỏ trống!',
+                    },
+                ]}>
                 <Input placeholder="Nhập tên đăng nhập" style={{ padding: '1%' }} />
-            </Row>
+            </Form.Item>
 
-            <Row>
-                <h3>Email</h3>
-            </Row>
-            <Row>
+            <h3>Email</h3>
+            <Form.Item
+                name="newEmail"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Vui lòng không bỏ trống!',
+                    },
+                ]}>
+
                 <Input placeholder="Nhập email" style={{ padding: '1%' }} />
-            </Row>
+            </Form.Item>
 
-            <Row>
-                <h3>Mật khẩu</h3>
-            </Row>
-            <Row>
+            <h3>Mật khẩu</h3>
+            <Form.Item
+                name="newPassword"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Vui lòng không bỏ trống!',
+                    },
+                ]}>
+
                 <Input placeholder="Nhập mật khẩu" style={{ padding: '1%' }} />
-            </Row>
+            </Form.Item>
 
-            <Row>
-                <h3>Xác nhận mật khẩu</h3>
-            </Row>
-            <Row>
+            <h3>Xác nhận mật khẩu</h3>
+            <Form.Item
+                name="reEnteredNewPass"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Vui lòng không bỏ trống!',
+                    },
+                ]}>
+
                 <Input placeholder="Nhập lại mật khẩu" style={{ padding: '1%' }} />
-            </Row></>
+            </Form.Item>
+        </>
+
+        // </Form>
     );
     const addInfo = (
         <>
@@ -65,10 +103,28 @@ export default function TaoNhanVienMoi() {
             </Row>
             <Row>
                 <Col span={12} style={{ paddingRight: '2%' }}>
-                    <Input placeholder="Nhập họ" style={{ padding: '2%' }} />
+                    <Form.Item
+                        name="lastName"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Vui lòng không bỏ trống!',
+                            },
+                        ]}>
+                        <Input placeholder="Nhập họ" style={{ padding: '2%' }} />
+                    </Form.Item>
                 </Col>
                 <Col span={12}>
-                    <Input placeholder="Nhập tên" style={{ padding: '2%' }} />
+                    <Form.Item
+                        name="firstName"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Vui lòng không bỏ trống!',
+                            },
+                        ]}>
+                        <Input placeholder="Nhập tên" style={{ padding: '2%' }} />
+                    </Form.Item>
                 </Col>
             </Row>
 
@@ -79,13 +135,32 @@ export default function TaoNhanVienMoi() {
             </Row>
             <Row>
                 <Col span={12} style={{ paddingRight: '2%' }}>
-                    <Radio.Group onChange={onChange} value={gender}>
-                        <Radio value={'Nữ'}>Nữ</Radio>
-                        <Radio value={'Nan'}>Nam</Radio>
-                    </Radio.Group>
+                    <Form.Item
+                        name="gender"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Vui lòng không bỏ trống!',
+                            },
+                        ]}>
+                        <Radio.Group onChange={onChange} value={gender}>
+                            <Radio value={'Nữ'}>Nữ</Radio>
+                            <Radio value={'Nam'}>Nam</Radio>
+                        </Radio.Group>
+                    </Form.Item>
+
                 </Col>
                 <Col span={12}>
-                    <Input placeholder="Nhập quốc tịch" style={{ padding: '2%' }} />
+                    <Form.Item
+                        name="nation"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Vui lòng không bỏ trống!',
+                            },
+                        ]}>
+                        <Input placeholder="Nhập quốc tịch" style={{ padding: '2%' }} />
+                    </Form.Item>
                 </Col>
             </Row>
 
@@ -96,19 +171,44 @@ export default function TaoNhanVienMoi() {
             </Row>
             <Row>
                 <Col span={12} style={{ paddingRight: '2%' }}>
-                    <Input placeholder="Nhập số điện thoại" style={{ padding: '2%' }} />
+                    <Form.Item
+                        name="phone"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Vui lòng không bỏ trống!',
+                            },
+                        ]}>
+                        <Input placeholder="Nhập số điện thoại" style={{ padding: '2%' }} />
+                    </Form.Item>
                 </Col>
                 <Col span={12}>
-                    <Input type='date' style={{ padding: '2%', width: '50%' }} />
+                    <Form.Item
+                        name="dateOfBirth"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Vui lòng không bỏ trống!',
+                            },
+                        ]}>
+                        <Input type='date' style={{ padding: '2%', width: '50%' }} />
+                    </Form.Item>
                 </Col>
             </Row>
 
             <Row>
                 <h3>Địa chỉ</h3>
             </Row>
-            <Row>
+            <Form.Item
+                name="location"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Vui lòng không bỏ trống!',
+                    },
+                ]}>
                 <Input placeholder="Nhập địa chỉ" style={{ padding: '1%' }} />
-            </Row>
+            </Form.Item>
 
             {/* Phòng ban & CCCD */}
             <Row>
@@ -117,14 +217,33 @@ export default function TaoNhanVienMoi() {
             </Row>
             <Row>
                 <Col span={12} style={{ paddingRight: '2%' }}>
-                    <Dropdown overlay={menu}>
-                        <Button type="default" style={{ width: '100%', height: '100%', textAlign: 'left' }}>
-                            {selected}<CaretDownOutlined style={{ float: 'right' }} />
-                        </Button>
-                    </Dropdown>
+                    <Form.Item
+                        name="department"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Vui lòng không bỏ trống!',
+                            },
+                        ]}>
+                        <Dropdown overlay={menu}>
+                            <Button type="default" style={{ width: '100%', height: '100%', textAlign: 'left' }}>
+                                {selected}<CaretDownOutlined style={{ float: 'right' }} />
+                            </Button>
+                        </Dropdown>
+                    </Form.Item>
+
                 </Col>
                 <Col span={12}>
-                    <Input placeholder="Nhập CCCD|CMND" style={{ padding: '2%' }} />
+                    <Form.Item
+                        name="CCCD"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Vui lòng không bỏ trống!',
+                            },
+                        ]}>
+                        <Input placeholder="Nhập CCCD|CMND" style={{ padding: '2%' }} />
+                    </Form.Item>
                 </Col>
             </Row>
 
@@ -135,18 +254,43 @@ export default function TaoNhanVienMoi() {
             </Row>
             <Row>
                 <Col span={12} style={{ paddingRight: '2%' }}>
-                    <Input placeholder="Nhập tên tài khoản ngân hàng" style={{ padding: '2%' }} />
+                    <Form.Item
+                        name="bankAccountName"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Vui lòng không bỏ trống!',
+                            },
+                        ]}>
+                        <Input placeholder="Nhập tên tài khoản ngân hàng" style={{ padding: '2%' }} />
+                    </Form.Item>
                 </Col>
                 <Col span={12}>
-                    <Input placeholder="Nhập số tài khoản ngân hàng" style={{ padding: '2%' }} />
+                    <Form.Item
+                        name="bankAccountID"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Vui lòng không bỏ trống!',
+                            },
+                        ]}>
+                        <Input placeholder="Nhập số tài khoản ngân hàng" style={{ padding: '2%' }} />
+                    </Form.Item>
                 </Col>
             </Row>
             <Row>
                 <h3>Ngân hàng</h3>
             </Row>
-            <Row>
+            <Form.Item
+                name="bankName"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Vui lòng không bỏ trống!',
+                    },
+                ]}>
                 <Input placeholder="Nhập ngân hàng" style={{ padding: '1%' }} />
-            </Row>
+            </Form.Item>
         </>
     );
     const steps = [
@@ -178,31 +322,43 @@ export default function TaoNhanVienMoi() {
             <HeaderContent title='Thêm Nhân Viên' />
 
             <Content style={{ margin: '3% 10%' }}>
-                <Steps current={current} items={items} />
-                <div style={{ marginTop: '2%' }}>{steps[current].content}</div>
-                <div
-                    style={{
-                        marginTop: '5%'
-                    }}
+                <Form
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
+                    autoComplete="off"
                 >
-                    {current < steps.length - 1 && (
-                        <Button type="primary" size="large" style={{ float: 'right' }} onClick={() => next()}>
-                            Tiếp tục
-                        </Button>
-                    )}
-                    {current === steps.length - 1 && (
-                        <Button type='primary' size="large" style={{ float: 'right', backgroundColor: 'lightgrey', color: 'grey' }} onClick={() => message.success('Processing complete!')}>
-                            Hoàn thành
-                        </Button>
-                    )}
-                    {current > 0 && (
-                        <Button type='default' size="large" style={{ border: '1px solid blue', color: 'blue', float: 'left' }}
-                            onClick={() => prev()}
+                    <Steps current={current} items={items} />
+                    <div style={{ marginTop: '2%' }}>{steps[current].content}</div>
+                    <Form.Item>
+                        <div
+                            style={{
+                                marginTop: '5%'
+                            }}
                         >
-                            Quay về
-                        </Button>
-                    )}
-                </div>
+                            {current < steps.length - 1 && (
+                                <Button type="primary" size="large" style={{ float: 'right' }}
+                                    htmlType="submit"
+                                // onClick={() => next()}
+                                >
+                                    Tiếp tục
+                                </Button>
+                            )}
+                            {current === steps.length - 1 && (
+                                <Button type='primary' size="large" style={{ float: 'right', backgroundColor: 'lightgrey', color: 'grey' }} onClick={() => message.success('Processing complete!')}
+                                    htmlType="submit">
+                                    Hoàn thành
+                                </Button>
+                            )}
+                            {current > 0 && (
+                                <Button type='default' size="large" style={{ border: '1px solid blue', color: 'blue', float: 'left' }}
+                                    onClick={() => prev()}
+                                >
+                                    Quay về
+                                </Button>
+                            )}
+                        </div>
+                    </Form.Item>
+                </Form>
 
             </Content>
 
