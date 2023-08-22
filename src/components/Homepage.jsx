@@ -1,3 +1,4 @@
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Checkbox, Col, Form, Input, Row } from "antd";
 import Layout from "antd/es/layout/layout";
 import { useState } from "react";
@@ -35,51 +36,55 @@ export default function Homepage() {
                     <a className='close' href='#'>&times;</a>
                     <div className='content'>
                         <Form
-                            name="login"
+                            name="normal_login"
+                            className="login-form"
                             initialValues={{
                                 remember: false,
                             }}
                             onFinish={onFinish}
                             onFinishFailed={onFinishFailed}
-                            autoComplete="off"
                         >
                             <Form.Item
-                                label="Tên đăng nhập"
                                 name="username"
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Nhập tên đăng nhập của bạn!',
+                                        message: 'Vui lòng không bỏ trống!',
                                     },
                                 ]}
                             >
-                                <Input />
+                                <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Tên đăng nhập" />
                             </Form.Item>
-
                             <Form.Item
-                                label="Mật khẩu"
                                 name="password"
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Nhập mật khẩu của bạn!',
+                                        message: 'Vui lòng không bỏ trống!',
                                     },
                                 ]}
                             >
-                                <Input.Password />
+                                <Input
+                                    prefix={<LockOutlined className="site-form-item-icon" />}
+                                    type="password"
+                                    placeholder="Mật khẩu"
+                                />
                             </Form.Item>
+                            <Form.Item>
+                                <Form.Item name="remember" valuePropName="checked" noStyle>
+                                    <Checkbox>Nhớ mặt tôi</Checkbox>
+                                </Form.Item>
 
-                            <Form.Item
-                                name="remember"
-                                valuePropName="checked"
-                            >
-                                <Checkbox>Nhớ mặt tôi</Checkbox>
+                                <a className="login-form-forgot" href="">
+                                    Quên mật khẩu
+                                </a>
                             </Form.Item>
 
                             <Form.Item>
-                                <Button size='large' type='primary' style={{ float: 'right' }} htmlType="submit">
+                                <Button type="primary" htmlType="submit" className="login-form-button">
                                     Đăng nhập
                                 </Button>
+                                Hoặc <a href="">Đăng ký tại đây</a>
                             </Form.Item>
                         </Form>
 

@@ -1,10 +1,12 @@
 import { BankOutlined, CalendarOutlined, CreditCardOutlined, DownOutlined, EllipsisOutlined, GlobalOutlined, HomeOutlined, MailOutlined, PhoneOutlined, PlusOutlined, UnorderedListOutlined, UserOutlined } from "@ant-design/icons";
 import { Avatar, Badge, Button, Card, Col, Dropdown, Input, Row, Space, Table, message } from "antd";
 import { Content } from "antd/es/layout/layout";
-import nhanVien from '../../../data/ListNhanVien';
 import HeaderContent from "../../Headers/HeaderContent";
+import { useSelector } from "react-redux";
 
 export default function ToanBoNhanVien() {
+    const empList = useSelector((state) => state.emps.value);
+
     function setStatus(status) {
         if (status === 'active') return (<Avatar style={{ backgroundColor: 'rgb(39, 128, 245)' }} icon={<UserOutlined />} />);
         if (status === 'inactive') return (<Avatar style={{ backgroundColor: 'lightgrey' }} icon={<UserOutlined />} />);
@@ -155,7 +157,7 @@ export default function ToanBoNhanVien() {
                     </Row>
 
                 </Card>
-                <Table dataSource={nhanVien} columns={columns}
+                <Table dataSource={empList} columns={columns}
                     pagination={true} scroll={{ x: 'max-content' }}
                     tableLayout="column.elipsis"
                     style={{ height: '70vh', boxShadow: '1px 1px 2px grey' }} />

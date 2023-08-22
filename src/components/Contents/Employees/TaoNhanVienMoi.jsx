@@ -1,37 +1,75 @@
-import { Button, Col, Dropdown, Form, Menu, Radio, Row, Steps, message, theme } from "antd";
+import { Button, Col, Form, Radio, Row, Select, Steps, message } from "antd";
 import Input from "antd/es/input/Input";
 import { Content } from "antd/es/layout/layout";
 import { useState } from "react";
 import phongBan from "../../../data/ListPhongBan";
 import HeaderContent from "../../Headers/HeaderContent";
-import { CaretDownOutlined } from "@ant-design/icons";
+
+import { useDispatch } from "react-redux";
+import { addEmp } from "../../../redux/Employees";
+
 export default function TaoNhanVienMoi() {
+    const dispatch = useDispatch();
+
+    const [userName, setUserName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [firstName, setFirstName] = useState('');
     const [gender, setGender] = useState('');
-    const onChange = (e) => {
-        console.log('radio checked', e.target.value);
-        setGender(e.target.value);
-    };
-    const menu = (
-        <Menu>
-            {phongBan.map((item) => (
-                <Menu.Item key={item.id} onClick={() => handleSelect(item.tpb[0])}>
-                    {item.tpb[0]}
-                </Menu.Item>
-            ))}
-        </Menu>
-    );
-    const [selected, setSelected] = useState('Chọn phòng ban');
+    const [nationality, setNationality] = useState('');
+    const [phone, setPhone] = useState('');
+    const [dob, setDob] = useState('');
+    const [location, setLocation] = useState('');
+    const [department, setDepartment] = useState('');
+    const [cccd, setCCCD] = useState('');
+    const [bankAccountName, setBankAccountName] = useState('');
+    const [bankAccountID, setBankAccountID] = useState('');
+    const [bankName, setBankName] = useState('');
 
-    const handleSelect = (name) => {
-        setSelected(name);
-    };
+    const [errMsg, setErrMsg] = useState();
+    const options = phongBan.map((item) => (
+        <Select.Option key={item.id} value={item.tpb[0]}>
+            {item.tpb[0]}
+        </Select.Option>
+    ));
 
+    function checkPass(newPass1, newPass2) {
+        if ((newPass1 != null && newPass2 != null) && (newPass1 != newPass2)) {
+            setErrMsg("Mật khẩu không trùng khớp!");
+            return false;
+        } else {
+            setErrMsg();
+            return true;
+        };
+    }
     const onFinish = (values) => {
-        console.log('Success:', values);
-        next();
+        if (checkPass(values.newPassword, values.reEnteredNewPass)) {
+            console.log('Success:', values);
+            message.success('Đã lưu thông tin!');
+            if (current <= steps.length - 2) next();
+            if (current === steps.length - 1) {
+                dispatch(addEmp({
+                    status: 'active',
+                    id: 0,
+                    tnv: firstName,
+                    pb: department,
+                    sdt: phone,
+                    gt: gender,
+                    email: email,
+                    nh: bankName,
+                    ns: dob,
+                    dc: location,
+                    qg: nationality,
+                    tknh: bankAccountName,
+                }));
+                message.success('Khởi tạo thông tin thành công!');
+            }
+        } else onFinishFailed(values);
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
+        message.error('Lưu thất bại do có sai sót trong quá trình nhập dữ liệu');
     };
     const createAccount = (
         // <Form
@@ -49,7 +87,7 @@ export default function TaoNhanVienMoi() {
                         message: 'Vui lòng không bỏ trống!',
                     },
                 ]}>
-                <Input placeholder="Nhập tên đăng nhập" style={{ padding: '1%' }} />
+                <Input type='string' value={userName} placeholder="Nhập tên đăng nhập" style={{ padding: '1%' }} />
             </Form.Item>
 
             <h3>Email</h3>
@@ -62,7 +100,8 @@ export default function TaoNhanVienMoi() {
                     },
                 ]}>
 
-                <Input placeholder="Nhập email" style={{ padding: '1%' }} />
+                <Input type='email' value={email} placeholder="Nhập email" style={{ padding: '1%' }}
+                    onChange={(e) => setEmail(e.target.value)} />
             </Form.Item>
 
             <h3>Mật khẩu</h3>
@@ -75,7 +114,7 @@ export default function TaoNhanVienMoi() {
                     },
                 ]}>
 
-                <Input placeholder="Nhập mật khẩu" style={{ padding: '1%' }} />
+                <Input type='string' value={password} placeholder="Nhập mật khẩu" style={{ padding: '1%' }} />
             </Form.Item>
 
             <h3>Xác nhận mật khẩu</h3>
@@ -88,7 +127,7 @@ export default function TaoNhanVienMoi() {
                     },
                 ]}>
 
-                <Input placeholder="Nhập lại mật khẩu" style={{ padding: '1%' }} />
+                <Input type='string' placeholder="Nhập lại mật khẩu" style={{ padding: '1%' }} />
             </Form.Item>
         </>
 
@@ -111,7 +150,8 @@ export default function TaoNhanVienMoi() {
                                 message: 'Vui lòng không bỏ trống!',
                             },
                         ]}>
-                        <Input placeholder="Nhập họ" style={{ padding: '2%' }} />
+                        <Input type='string' value={lastName} placeholder="Nhập họ" style={{ padding: '2%' }}
+                            onChange={(e) => setLastName(e.target.value)} />
                     </Form.Item>
                 </Col>
                 <Col span={12}>
@@ -123,7 +163,8 @@ export default function TaoNhanVienMoi() {
                                 message: 'Vui lòng không bỏ trống!',
                             },
                         ]}>
-                        <Input placeholder="Nhập tên" style={{ padding: '2%' }} />
+                        <Input type='string' value={firstName} placeholder="Nhập tên" style={{ padding: '2%' }}
+                            onChange={(e) => setFirstName(e.target.value)} />
                     </Form.Item>
                 </Col>
             </Row>
@@ -143,7 +184,7 @@ export default function TaoNhanVienMoi() {
                                 message: 'Vui lòng không bỏ trống!',
                             },
                         ]}>
-                        <Radio.Group onChange={onChange} value={gender}>
+                        <Radio.Group onChange={(e) => setGender(e.target.value)} value={gender}>
                             <Radio value={'Nữ'}>Nữ</Radio>
                             <Radio value={'Nam'}>Nam</Radio>
                         </Radio.Group>
@@ -152,14 +193,15 @@ export default function TaoNhanVienMoi() {
                 </Col>
                 <Col span={12}>
                     <Form.Item
-                        name="nation"
+                        name="nationality"
                         rules={[
                             {
                                 required: true,
                                 message: 'Vui lòng không bỏ trống!',
                             },
                         ]}>
-                        <Input placeholder="Nhập quốc tịch" style={{ padding: '2%' }} />
+                        <Input type='string' value={nationality} placeholder="Nhập quốc tịch" style={{ padding: '2%' }}
+                            onChange={(e) => setNationality(e.target.value)} />
                     </Form.Item>
                 </Col>
             </Row>
@@ -179,7 +221,8 @@ export default function TaoNhanVienMoi() {
                                 message: 'Vui lòng không bỏ trống!',
                             },
                         ]}>
-                        <Input placeholder="Nhập số điện thoại" style={{ padding: '2%' }} />
+                        <Input type='string' value={phone} placeholder="Nhập số điện thoại" style={{ padding: '2%' }}
+                            onChange={(e) => setPhone(e.target.value)} />
                     </Form.Item>
                 </Col>
                 <Col span={12}>
@@ -191,7 +234,8 @@ export default function TaoNhanVienMoi() {
                                 message: 'Vui lòng không bỏ trống!',
                             },
                         ]}>
-                        <Input type='date' style={{ padding: '2%', width: '50%' }} />
+                        <Input type='date' value={dob} max='2005-01-01' style={{ padding: '2%', width: '50%' }}
+                            onChange={(e) => setDob(e.target.value)} />
                     </Form.Item>
                 </Col>
             </Row>
@@ -207,7 +251,8 @@ export default function TaoNhanVienMoi() {
                         message: 'Vui lòng không bỏ trống!',
                     },
                 ]}>
-                <Input placeholder="Nhập địa chỉ" style={{ padding: '1%' }} />
+                <Input type='string' value={location} placeholder="Nhập địa chỉ" style={{ padding: '1%' }}
+                    onChange={(e) => setLocation(e.target.value)} />
             </Form.Item>
 
             {/* Phòng ban & CCCD */}
@@ -225,11 +270,8 @@ export default function TaoNhanVienMoi() {
                                 message: 'Vui lòng không bỏ trống!',
                             },
                         ]}>
-                        <Dropdown overlay={menu}>
-                            <Button type="default" style={{ width: '100%', height: '100%', textAlign: 'left' }}>
-                                {selected}<CaretDownOutlined style={{ float: 'right' }} />
-                            </Button>
-                        </Dropdown>
+                        <Select defaultValue="Chọn phòng ban"
+                            onChange={(e) => setDepartment(e)}>{options}</Select>
                     </Form.Item>
 
                 </Col>
@@ -242,7 +284,8 @@ export default function TaoNhanVienMoi() {
                                 message: 'Vui lòng không bỏ trống!',
                             },
                         ]}>
-                        <Input placeholder="Nhập CCCD|CMND" style={{ padding: '2%' }} />
+                        <Input type='string' value={cccd} placeholder="Nhập CCCD|CMND" style={{ padding: '2%' }}
+                            onChange={(e) => setCCCD(e.target.value)} />
                     </Form.Item>
                 </Col>
             </Row>
@@ -262,7 +305,8 @@ export default function TaoNhanVienMoi() {
                                 message: 'Vui lòng không bỏ trống!',
                             },
                         ]}>
-                        <Input placeholder="Nhập tên tài khoản ngân hàng" style={{ padding: '2%' }} />
+                        <Input type='string' value={bankAccountName} placeholder="Nhập tên tài khoản ngân hàng" style={{ padding: '2%' }}
+                            onChange={(e) => setBankAccountName(e.target.value)} />
                     </Form.Item>
                 </Col>
                 <Col span={12}>
@@ -274,7 +318,8 @@ export default function TaoNhanVienMoi() {
                                 message: 'Vui lòng không bỏ trống!',
                             },
                         ]}>
-                        <Input placeholder="Nhập số tài khoản ngân hàng" style={{ padding: '2%' }} />
+                        <Input type='string' value={bankAccountID} placeholder="Nhập số tài khoản ngân hàng" style={{ padding: '2%' }}
+                            onChange={(e) => setBankAccountID(e.target.value)} />
                     </Form.Item>
                 </Col>
             </Row>
@@ -289,7 +334,8 @@ export default function TaoNhanVienMoi() {
                         message: 'Vui lòng không bỏ trống!',
                     },
                 ]}>
-                <Input placeholder="Nhập ngân hàng" style={{ padding: '1%' }} />
+                <Input type='string' value={bankName} placeholder="Nhập ngân hàng" style={{ padding: '1%' }}
+                    onChange={(e) => setBankName(e.target.value)} />
             </Form.Item>
         </>
     );
@@ -329,6 +375,7 @@ export default function TaoNhanVienMoi() {
                 >
                     <Steps current={current} items={items} />
                     <div style={{ marginTop: '2%' }}>{steps[current].content}</div>
+                    <h3 style={{ color: 'red' }}>{errMsg}</h3>
                     <Form.Item>
                         <div
                             style={{
@@ -344,7 +391,7 @@ export default function TaoNhanVienMoi() {
                                 </Button>
                             )}
                             {current === steps.length - 1 && (
-                                <Button type='primary' size="large" style={{ float: 'right', backgroundColor: 'lightgrey', color: 'grey' }} onClick={() => message.success('Processing complete!')}
+                                <Button type='primary' size="large" style={{ float: 'right', backgroundColor: 'lightgrey', color: 'grey' }}
                                     htmlType="submit">
                                     Hoàn thành
                                 </Button>
